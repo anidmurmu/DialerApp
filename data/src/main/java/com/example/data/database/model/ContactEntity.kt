@@ -10,8 +10,11 @@ data class ContactEntity(
     @ColumnInfo(name = "contact_num")
     val contactNumber: String,
 
-    @ColumnInfo(name = "name")
-    val name: String,
+    @ColumnInfo(name = "full_name")
+    val fullName: String,
+
+    @ColumnInfo(name = "email")
+    val email: String,
 
     @ColumnInfo(name = "is_blocked")
     val isBlocked: Boolean = false

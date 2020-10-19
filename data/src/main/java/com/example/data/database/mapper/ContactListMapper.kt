@@ -6,14 +6,27 @@ import com.example.data.database.model.ContactEntity
 import com.example.domain.base.Mapper
 import com.example.domain.model.ContactUiModel
 
-class ContactEntityToContactUiMapper : Mapper<LiveData<List<ContactEntity>>, LiveData<List<ContactUiModel>>> {
+class ContactEntityListToContactUiModelListMapper : Mapper<LiveData<List<ContactEntity>>, LiveData<List<ContactUiModel>>> {
   override fun mapFrom(type: LiveData<List<ContactEntity>>): LiveData<List<ContactUiModel>> {
     val newList: ArrayList<ContactUiModel> = ArrayList()
     return Transformations.map(type) { contactList ->
       contactList.forEach {
-        newList.add(ContactUiModel(it.name))
+        newList.add(ContactUiModel(it.contactNumber,
+          it.fullName,
+          it.email,
+          it.isBlocked
+        ))
       }
       return@map newList
     }
+  }
+}
+
+class ContactUiModelToContactEntityMapper : Mapper<ContactUiModel, ContactEntity> {
+  override fun mapFrom(type: ContactUiModel): ContactEntity {
+    return ContactEntity(type.contactNumber,
+    type.fullName,
+    type.email,
+    type.isBlocked)
   }
 }
