@@ -1,5 +1,6 @@
 package com.example.data.database.repositoryimpl
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import com.example.data.database.dao.ContactDao
 import com.example.data.database.mapper.ContactEntityListToContactUiModelListMapper
@@ -8,14 +9,16 @@ import com.example.domain.model.ContactUiModel
 import com.example.domain.repository.ContactRepository
 
 class ContactListRepositoryImpl(
-    private val dataSource: ContactDao,
+    private val contactDao: ContactDao,
     private val contactEntityListToContactUiModelListMapper: ContactEntityListToContactUiModelListMapper,
     private val contactUiModelToContactEntityMapper: ContactUiModelToContactEntityMapper
 ) : ContactRepository {
     override suspend fun getContactList(): LiveData<List<ContactUiModel>> {
+        Log.d("apple repo", contactDao
+            .getContactList().value?.size.toString())
         return contactEntityListToContactUiModelListMapper
             .mapFrom(
-                dataSource
+                contactDao
                     .getContactList()
             )
     }
@@ -23,24 +26,24 @@ class ContactListRepositoryImpl(
     override suspend fun getBlockedContactList(): LiveData<List<ContactUiModel>> {
         return contactEntityListToContactUiModelListMapper
             .mapFrom(
-                dataSource
+                contactDao
                     .getBlockedContactList()
             )
     }
 
     override suspend fun addContact(contactUiModel: ContactUiModel) {
-        dataSource.addContact(contactUiModelToContactEntityMapper.mapFrom(contactUiModel))
+        contactDao.addContact(contactUiModelToContactEntityMapper.mapFrom(contactUiModel))
     }
 
     override suspend fun updateContact(contactUiModel: ContactUiModel) {
-        dataSource.updateContact(contactUiModelToContactEntityMapper.mapFrom(contactUiModel))
+        contactDao.updateContact(contactUiModelToContactEntityMapper.mapFrom(contactUiModel))
     }
 
     override suspend fun deleteContact(contactUiModel: ContactUiModel) {
-        dataSource.deleteContact(contactUiModelToContactEntityMapper.mapFrom(contactUiModel))
+        contactDao.deleteContact(contactUiModelToContactEntityMapper.mapFrom(contactUiModel))
     }
 
     override suspend fun blockContact(contactUiModel: ContactUiModel) {
-        dataSource.blockContact(contactUiModelToContactEntityMapper.mapFrom(contactUiModel))
+        contactDao.blockContact(contactUiModelToContactEntityMapper.mapFrom(contactUiModel))
     }
 }

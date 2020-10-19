@@ -1,18 +1,24 @@
 package com.example.dialerapp.view.contactaddition
 
+import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.example.dialerapp.App
 import com.example.dialerapp.R
 import com.example.domain.base.Status
+import com.example.domain.model.ContactUiModel
+import com.example.domain.usecase.AddContactUseCase
 import com.example.ui.base.RxAwareViewModel
 import com.example.ui.base.ViewOnClickListener
 import com.example.ui.helper.isContactNumberValid
 import com.example.ui.helper.isEmailValid
 import com.example.ui.helper.isNameValid
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-class ContactInfoViewModel : RxAwareViewModel(), ViewOnClickListener {
+class ContactInfoViewModel(private val addContactUseCase: AddContactUseCase) : RxAwareViewModel(), ViewOnClickListener {
 
     private val _mutableLiveDataContactInfoViewState = MutableLiveData<ContactInfoViewState>()
     val liveDataContactInfoViewState: LiveData<ContactInfoViewState> =
@@ -118,11 +124,32 @@ class ContactInfoViewModel : RxAwareViewModel(), ViewOnClickListener {
                 validateEmail(liveDataContactInfoViewState.value?.emailId?.value)
     }
 
+    private fun getFullName(firstName: String?, lastName: String?): String {
+        if (lastName?.trim()?.isEmpty() == true) {
+            return firstName?.trim() ?: ""
+        }
+        return firstName?.trim() + " " + lastName?.trim() ?: ""
+    }
+
+    private fun addContact() {
+        viewModelScope.launch(Dispatchers.IO) {
+            addContactUseCase.addContact(ContactUiModel(
+                liveDataContactInfoViewState.value?.contactNumber?.value ?: "",
+                getFullName(liveDataContactInfoViewState.value?.firstName?.value, liveDataContactInfoViewState.value?.lastName?.value),
+                liveDataContactInfoViewState.value?.emailId?.value ?: "",
+                false
+
+            ))
+            //Log.d("apple", contactList?.value?.size.toString() + " this is size")
+        }
+    }
+
     override fun onViewClick(id: Int, data: Any) {
         when (id) {
             R.id.onclick_btn_save_contact -> {
                 if (isFormValid()) {
                     _mutableLiveDataContactInfoViewState.value?.liveDataToContactList?.postValue(true)
+                    addContact()
                     Toast.makeText(App.instance, "working", Toast.LENGTH_SHORT).show()
                 }
             }

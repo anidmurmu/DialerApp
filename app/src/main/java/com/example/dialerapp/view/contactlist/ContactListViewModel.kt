@@ -20,7 +20,7 @@ class ContactListViewModel(private val getContactListUseCase: GetContactListUseC
 
   fun init() {
     _contactListMutableLiveData.value =
-      ContactListViewState((Status.LOADING))
+      ContactListViewState((Status.LOADING)) 
   }
 
   init {
