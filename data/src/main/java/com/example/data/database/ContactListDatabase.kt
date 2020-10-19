@@ -15,7 +15,7 @@ abstract class ContactListDatabase : RoomDatabase() {
 
   abstract fun getContactDao(): ContactDao
 
-  companion object {
+  /*companion object {
     @Volatile
     private var INSTANCE: ContactListDatabase? = null
     fun getDatabase(scope: CoroutineScope, context: Context): ContactListDatabase? {
@@ -31,5 +31,5 @@ abstract class ContactListDatabase : RoomDatabase() {
       }
       return INSTANCE
     }
-  }
+  }*/
 }
