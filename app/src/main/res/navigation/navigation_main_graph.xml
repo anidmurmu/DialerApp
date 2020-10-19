@@ -6,6 +6,14 @@
     app:startDestination="@id/contactListFragment">
     <fragment
         android:id="@+id/contactListFragment"
-        android:name="com.example.dialerapp.view.ContactListFragment"
-        android:label="WordFragment" />
+        android:name="com.example.dialerapp.view.contactlist.ContactListFragment"
+        android:label="WordFragment" >
+        <action
+            android:id="@+id/action_contactListFragment_to_contactInfoFragment"
+            app:destination="@id/contactInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/contactInfoFragment"
+        android:name="com.example.dialerapp.view.contactaddition.ContactInfoFragment"
+        android:label="ContactInfoFragment" />
 </navigation>

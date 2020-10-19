@@ -10,7 +10,8 @@ class ContactListRepositoryImpl(private val dataSource: ContactDao,
                                 private val contactEntityToContactUiMapper: ContactEntityToContactUiMapper) : ContactListRepository {
   override suspend fun getContactList(): LiveData<List<ContactUiModel>> {
     return contactEntityToContactUiMapper
-        .mapFrom(dataSource
+        .mapFrom(
+            dataSource
             .getContactList())
   }
 }

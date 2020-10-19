@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.dialerapp.view.ContactListViewModel" />
+            type="com.example.dialerapp.view.contactlist.ContactListViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,6 +21,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabAddContact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_add_circle_outline_black_24"
+            android:onClick="@{() -> viewModel.onViewClick(@id/on_click_btn_add_contact, @id/on_click_btn_add_contact)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="48dp"
+            android:layout_marginBottom="48dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

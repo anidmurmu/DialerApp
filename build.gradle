@@ -24,7 +24,7 @@ buildscript {
         junitTestVersion = "1.1.2"
         espressoCoreVersion = "3.3.0"
         constraintlayoutVersion = "2.0.2"
-        glideVersion = "4.8.0"
+        glideVersion = "4.10.0"
         fragmentKtxVersion = "2.3.1"
         navigationUiKtxVersion = "2.3.1"
         navigationFragmentKtxVersion = "2.3.1"

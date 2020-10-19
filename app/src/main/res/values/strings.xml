@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">DialerApp</string>
+
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+    <string name="phone_num">Phone Number</string>
+    <string name="email">Email</string>
+    <string name="save">Save</string>
 </resources>

@@ -1,25 +1,26 @@
-package com.example.dialerapp.view
+package com.example.dialerapp.view.contactlist
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.data.database.ContactListDatabase
-import com.example.dialerapp.App
+import com.example.dialerapp.R
 import com.example.domain.base.Status
 import com.example.domain.model.ContactUiModel
 import com.example.domain.usecase.GetContactListUseCase
 import com.example.ui.base.RxAwareViewModel
+import com.example.ui.base.ViewOnClickListener
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class ContactListViewModel(private val getContactListUseCase: GetContactListUseCase) : RxAwareViewModel() {
+class ContactListViewModel(private val getContactListUseCase: GetContactListUseCase) : RxAwareViewModel(), ViewOnClickListener {
 
   private val _contactListMutableLiveData = MutableLiveData<ContactListViewState>()
   val contactListLiveData: LiveData<ContactListViewState> = _contactListMutableLiveData
 
   fun init() {
-    _contactListMutableLiveData.value = ContactListViewState((Status.LOADING))
+    _contactListMutableLiveData.value =
+      ContactListViewState((Status.LOADING))
   }
 
   init {
@@ -36,7 +37,16 @@ class ContactListViewModel(private val getContactListUseCase: GetContactListUseC
 
   }
 
-  fun getContactList() {
+  /*suspend fun getContactList(): List<BaseBindingRVModel> {
+    val data = emptyList<BaseBindingRVModel>()
+    val dataFromNetwork = getContactListUseCase.getContactList()
+  }*/
 
+  override fun onViewClick(id: Int, data: Any) {
+    when(id) {
+      R.id.on_click_btn_add_contact -> {
+        _contactListMutableLiveData.value?.liveDataContactScreen?.postValue(true)
+      }
+    }
   }
 }
