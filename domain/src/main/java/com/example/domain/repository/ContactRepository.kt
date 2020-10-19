@@ -3,7 +3,7 @@ package com.example.domain.repository
 import androidx.lifecycle.LiveData
 import com.example.domain.model.ContactUiModel
 
-interface ContactListRepository {
+interface ContactRepository {
     suspend fun getContactList(): LiveData<List<ContactUiModel>>
     suspend fun getBlockedContactList(): LiveData<List<ContactUiModel>>
     suspend fun addContact(contactUiModel: ContactUiModel)

@@ -5,13 +5,13 @@ import com.example.data.database.dao.ContactDao
 import com.example.data.database.mapper.ContactEntityListToContactUiModelListMapper
 import com.example.data.database.mapper.ContactUiModelToContactEntityMapper
 import com.example.domain.model.ContactUiModel
-import com.example.domain.repository.ContactListRepository
+import com.example.domain.repository.ContactRepository
 
 class ContactListRepositoryImpl(
     private val dataSource: ContactDao,
     private val contactEntityListToContactUiModelListMapper: ContactEntityListToContactUiModelListMapper,
     private val contactUiModelToContactEntityMapper: ContactUiModelToContactEntityMapper
-) : ContactListRepository {
+) : ContactRepository {
     override suspend fun getContactList(): LiveData<List<ContactUiModel>> {
         return contactEntityListToContactUiModelListMapper
             .mapFrom(
