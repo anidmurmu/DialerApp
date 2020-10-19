@@ -6,4 +6,10 @@
     <string name="phone_num">Phone Number</string>
     <string name="email">Email</string>
     <string name="save">Save</string>
+    <string name="email_empty">Email cannot be empty</string>
+    <string name="email_error">Please enter valid email id</string>
+    <string name="name_empty">Name cannot be empty</string>
+    <string name="name_error">Please enter valid name</string>
+    <string name="contact_info_empty">Contact number cannot be empty</string>
+    <string name="contact_info_error">Please enter valid contact number</string>
 </resources>

@@ -7,60 +7,100 @@
 
         <variable
             name="viewModel"
-            type="com.example.dialerapp.view.contactaddition.ContactInfoViewModel"/>
+            type="com.example.dialerapp.view.contactaddition.ContactInfoViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <EditText
-            android:id="@+id/etFirstName"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilFirstName"
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
             android:hint="@string/first_name"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-        <EditText
-            android:id="@+id/etLastName"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:hint="@string/last_name"
-            app:layout_constraintTop_toBottomOf="@id/etFirstName"
-            app:layout_constraintStart_toStartOf="parent"
+            android:padding="4dp"
+            app:errorText="@{viewModel.liveDataContactInfoViewState.firstNameError}"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="24dp"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
-            android:id="@+id/etPhoneNumber"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etFirstName"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@={viewModel.liveDataContactInfoViewState.firstName}" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilLastName"
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:hint="@string/last_name"
+            android:padding="4dp"
+            app:errorText="@{viewModel.liveDataContactInfoViewState.lastNameError}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tilFirstName">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etLastName"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@={viewModel.liveDataContactInfoViewState.lastName}" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilContactNumber"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
             android:hint="@string/phone_num"
-            app:layout_constraintTop_toBottomOf="@id/etLastName"
-            app:layout_constraintStart_toStartOf="parent"
+            android:padding="4dp"
+            app:errorText="@{viewModel.liveDataContactInfoViewState.contactNumberError}"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="24dp"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tilLastName">
 
-        <EditText
-            android:id="@+id/etEmail"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etContactNumber"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@={viewModel.liveDataContactInfoViewState.contactNumber}" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilEmailId"
             android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:hint="@string/last_name"
-            app:layout_constraintTop_toBottomOf="@id/etPhoneNumber"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:hint="@string/email"
+            android:padding="4dp"
+            app:errorText="@{viewModel.liveDataContactInfoViewState.emailIdError}"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="24dp"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tilContactNumber">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etEmailId"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@={viewModel.liveDataContactInfoViewState.emailId}" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/btnSaveContact"
             android:layout_width="0dp"
             android:layout_height="48dp"
+            android:layout_marginTop="24dp"
             android:text="@string/save"
-            app:layout_constraintTop_toBottomOf="@id/etEmail"
+            android:onClick="@{() -> viewModel.onViewClick(@id/onclick_btn_save_contact, @id/onclick_btn_save_contact)}"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/tilEmailId" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

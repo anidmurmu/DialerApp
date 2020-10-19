@@ -44,7 +44,7 @@ class ContactListViewModel(private val getContactListUseCase: GetContactListUseC
 
   override fun onViewClick(id: Int, data: Any) {
     when(id) {
-      R.id.on_click_btn_add_contact -> {
+      R.id.onclick_btn_add_contact -> {
         _contactListMutableLiveData.value?.liveDataContactScreen?.postValue(true)
       }
     }

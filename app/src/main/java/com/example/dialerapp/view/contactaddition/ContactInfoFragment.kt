@@ -13,6 +13,8 @@ class ContactInfoFragment : DataBindingBaseFragment<FragmentContactInfoBinding>(
 
     override fun onViewDataBindingCreated(binding: FragmentContactInfoBinding) {
         binding.viewModel = model
+
+        model.init()
     }
 
     override fun setBaseStates() {

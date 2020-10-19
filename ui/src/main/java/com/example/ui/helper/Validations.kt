@@ -1,8 +1,12 @@
 package com.example.ui.helper
 
 import android.util.Patterns
+import java.util.regex.Matcher
+import java.util.regex.Pattern
 
-fun isValidEmail(email: String): Boolean {
+const val CONTACT_NUMBER_LEN = 10
+
+fun isEmailValid(email: String): Boolean {
   if (email.length < 10) {
     return false
   }
@@ -43,4 +47,15 @@ fun isValidEmail(email: String): Boolean {
 
 fun isNotEmpty(input: String?): Boolean {
   return input != null && input.trim { it <= ' ' }.isNotEmpty()
+}
+
+fun isNameValid(name: String): Boolean {
+  val regex = "^([a-zA-Z]{2,}\\s[a-zA-Z]+'?-?[a-zA-Z]{2,}\\s?([a-zA-Z]+)?)"
+  val pattern: Pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE)
+  val matcher: Matcher = pattern.matcher(name)
+  return matcher.find()
+}
+
+fun isContactNumberValid(number: String): Boolean {
+  return number.trim().length == CONTACT_NUMBER_LEN
 }
