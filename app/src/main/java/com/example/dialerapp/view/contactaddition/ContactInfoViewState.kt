@@ -16,4 +16,6 @@ class ContactInfoViewState(status: Status, error: Throwable? = null, data: Any? 
     val lastNameError: MutableLiveData<String> = MutableLiveData("")
     val contactNumberError: MutableLiveData<String> = MutableLiveData("")
     val emailIdError: MutableLiveData<String> = MutableLiveData("")
+
+    val liveDataToContactList: MutableLiveData<Boolean> = MutableLiveData(false)
 }

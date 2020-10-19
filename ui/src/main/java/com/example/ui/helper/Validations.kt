@@ -49,8 +49,9 @@ fun isNotEmpty(input: String?): Boolean {
   return input != null && input.trim { it <= ' ' }.isNotEmpty()
 }
 
-fun isNameValid(name: String): Boolean {
-  val regex = "^([a-zA-Z]{2,}\\s[a-zA-Z]+'?-?[a-zA-Z]{2,}\\s?([a-zA-Z]+)?)"
+fun isNameValid(name: String?): Boolean {
+  //val regex = "^([a-zA-Z]{2,}\\s[a-zA-Z]+'?-?[a-zA-Z]{2,}\\s?([a-zA-Z]+)?)"
+  val regex = "^[\\p{L} .'-]+$"
   val pattern: Pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE)
   val matcher: Matcher = pattern.matcher(name)
   return matcher.find()

@@ -46,7 +46,7 @@ class ContactInfoViewModel : RxAwareViewModel(), ViewOnClickListener {
         return true
     }
 
-    private fun validateName(name: String?): Boolean {
+    private fun validateFirstName(name: String?): Boolean {
         if (name.isNullOrEmpty()) {
             _mutableLiveDataContactInfoViewState.value?.firstNameError?.postValue(
                 App.instance.getString(
@@ -66,6 +66,25 @@ class ContactInfoViewModel : RxAwareViewModel(), ViewOnClickListener {
         }
 
         _mutableLiveDataContactInfoViewState.value?.firstNameError?.postValue("")
+        return true
+    }
+
+    private fun validateLastName(name: String?): Boolean {
+
+        if (name.isNullOrEmpty()) {
+            return true
+        }
+
+        if (!isNameValid(name)) {
+            _mutableLiveDataContactInfoViewState.value?.lastNameError?.postValue(
+                App.instance.getString(
+                    R.string.name_error
+                )
+            )
+            return false
+        }
+
+        _mutableLiveDataContactInfoViewState.value?.lastNameError?.postValue("")
         return true
     }
 
@@ -93,8 +112,8 @@ class ContactInfoViewModel : RxAwareViewModel(), ViewOnClickListener {
     }
 
     private fun isFormValid(): Boolean {
-        return validateName(liveDataContactInfoViewState.value?.firstName?.value) &&
-                validateName(liveDataContactInfoViewState.value?.lastName?.value) &&
+        return validateFirstName(liveDataContactInfoViewState.value?.firstName?.value) &&
+                validateLastName(liveDataContactInfoViewState.value?.lastName?.value) &&
                 validateContactNumber(liveDataContactInfoViewState.value?.contactNumber?.value) &&
                 validateEmail(liveDataContactInfoViewState.value?.emailId?.value)
     }
@@ -103,6 +122,7 @@ class ContactInfoViewModel : RxAwareViewModel(), ViewOnClickListener {
         when (id) {
             R.id.onclick_btn_save_contact -> {
                 if (isFormValid()) {
+                    _mutableLiveDataContactInfoViewState.value?.liveDataToContactList?.postValue(true)
                     Toast.makeText(App.instance, "working", Toast.LENGTH_SHORT).show()
                 }
             }

@@ -1,5 +1,7 @@
 package com.example.dialerapp.view.contactaddition
 
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.example.dialerapp.R
 import com.example.dialerapp.databinding.FragmentContactInfoBinding
 import com.example.ui.base.DataBindingBaseFragment
@@ -15,6 +17,12 @@ class ContactInfoFragment : DataBindingBaseFragment<FragmentContactInfoBinding>(
         binding.viewModel = model
 
         model.init()
+
+        model.liveDataContactInfoViewState.value?.liveDataToContactList?.observe(this, Observer {
+            if (it) {
+                findNavController().navigate(R.id.action_contactInfoFragment_to_contactListFragment)
+            }
+        })
     }
 
     override fun setBaseStates() {

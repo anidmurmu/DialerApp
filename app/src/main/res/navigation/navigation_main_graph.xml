@@ -15,5 +15,11 @@
     <fragment
         android:id="@+id/contactInfoFragment"
         android:name="com.example.dialerapp.view.contactaddition.ContactInfoFragment"
-        android:label="ContactInfoFragment" />
+        android:label="ContactInfoFragment" >
+        <action
+            android:id="@+id/action_contactInfoFragment_to_contactListFragment"
+            app:destination="@id/contactListFragment"
+            app:popUpTo="@id/contactInfoFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
 </navigation>
