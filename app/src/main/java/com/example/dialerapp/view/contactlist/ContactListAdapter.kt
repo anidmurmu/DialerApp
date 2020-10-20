@@ -24,7 +24,9 @@ class ContactListVHFactory : BaseViewHolderBindingFactory() {
 
 class ContactListViewHolder(binding: ViewDataBinding, val viewClickCallback: ViewOnClickListener?) : BaseBindingViewHolder<ContactListRVModel>(binding) {
     override fun bind(model: ContactListRVModel) {
+        val contactUiModel = model.getBindingPairs()[0].second as ContactUiModel
 
+        //itemView.name.text = contactUiModel.fullName
     }
 }
 

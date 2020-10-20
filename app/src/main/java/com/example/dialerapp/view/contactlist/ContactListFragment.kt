@@ -19,7 +19,6 @@ class ContactListFragment : DataBindingBaseFragment<FragmentContactListBinding>(
     override fun onViewDataBindingCreated(binding: FragmentContactListBinding) {
         binding.viewModel = model
         model.init()
-        //model.getContactList()
 
         binding.recyclerContactList.adapter = RVModelBindingAdapter(
             emptyList(),
@@ -32,6 +31,11 @@ class ContactListFragment : DataBindingBaseFragment<FragmentContactListBinding>(
                val contact =  model.getBindingPairs()[0].second
                 Log.d("apple content", contact.toString())
             }
+            /*binding.recyclerContactList.adapter = RVModelBindingAdapter(
+                it,
+                model,
+                ContactListVHFactory()
+            )*/
         })
 
         model.contactListLiveData.value?.liveDataContactScreen?.observe(this, Observer {
