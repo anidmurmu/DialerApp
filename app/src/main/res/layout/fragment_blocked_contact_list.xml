@@ -11,7 +11,7 @@
     </data>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerContactList"
+        android:id="@+id/recyclerBlockedContactList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:data="@{viewModel.blockedContactListViewStateLiveData.liveDataBlockedUserContactList}"
@@ -20,5 +20,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/item_contact" />
+        tools:listitem="@layout/item_blocked_contact" />
 </layout>

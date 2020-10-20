@@ -60,9 +60,7 @@ class BlockedContactListViewModel(
 
     override fun onViewClick(id: Int, data: Any) {
         when (id) {
-            R.id.onclick_btn_unblock_list -> {
-                _blockedContactListViewStateMutableLiveData.value?.liveDataBlockedContactScreen?.postValue(true)
-            }
+
         }
     }
 }
