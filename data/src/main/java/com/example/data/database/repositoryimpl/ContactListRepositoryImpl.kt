@@ -15,21 +15,21 @@ class ContactListRepositoryImpl(
     private val contactEntityListToContactUiModelListMapperWithoutLiveData: ContactEntityListToContactUiModelListMapperWithoutLiveData,
     private val contactUiModelToContactEntityMapper: ContactUiModelToContactEntityMapper
 ) : ContactRepository {
-    override suspend fun getContactList(): List<ContactUiModel> {
+    override suspend fun getContactList(isBlocked: Boolean): List<ContactUiModel> {
         /*Log.d("apple repo", contactDao
             .getContactList().value?.size.toString())*/
         return contactEntityListToContactUiModelListMapperWithoutLiveData
             .mapFrom(
                 contactDao
-                    .getContactList()
+                    .getContactList(isBlocked)
             )
     }
 
-    override suspend fun getBlockedContactList(): LiveData<List<ContactUiModel>> {
-        return contactEntityListToContactUiModelListMapper
+    override suspend fun getBlockedContactList(isBlocked: Boolean): List<ContactUiModel> {
+        return contactEntityListToContactUiModelListMapperWithoutLiveData
             .mapFrom(
                 contactDao
-                    .getBlockedContactList()
+                    .getBlockedContactList(isBlocked)
             )
     }
 

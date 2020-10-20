@@ -147,8 +147,8 @@ class ContactInfoViewModel(private val addContactUseCase: AddContactUseCase,
             ))
             //Log.d("apple", contactList?.value?.size.toString() + " this is size")
             delay(2000)
-            Log.d("apple1", getContactListUseCase.getContactList().toString())
-            Log.d("apple11", getContactListUseCase.getContactList().size.toString())
+            Log.d("apple1", getContactListUseCase.getContactList(isBlocked = false).toString())
+            Log.d("apple11", getContactListUseCase.getContactList(isBlocked = false).size.toString())
         }
     }
 

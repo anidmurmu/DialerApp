@@ -33,7 +33,7 @@ class ContactListViewModel(private val getContactListUseCase: GetContactListUseC
     var contactList: LiveData<List<ContactUiModel>>? = null
     viewModelScope.launch(Dispatchers.IO) {
       //contactList = getContactListUseCase.getContactList()
-      data = getContactListUseCase.getContactList()
+      data = getContactListUseCase.getContactList(isBlocked = false)
       //data.postValue()
       //Log.d("apple", data.toString() + " this is size")
       //Log.d("apple value", data.size.toString() + " this is size")
@@ -49,9 +49,9 @@ class ContactListViewModel(private val getContactListUseCase: GetContactListUseC
 
   fun getContactList() {
     viewModelScope.launch(Dispatchers.IO) {
-      val list = getContactListUseCase.getContactList()
-      Log.d("apple", "$list")
-      Log.d("apple value", list.size.toString() + " this is size")
+      val list = getContactListUseCase.getContactList(isBlocked = false)
+      //Log.d("apple", "$list")
+      //Log.d("apple value", list.size.toString() + " this is size")
     }
   }
 

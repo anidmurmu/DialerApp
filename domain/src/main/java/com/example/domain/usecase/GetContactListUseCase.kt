@@ -6,12 +6,12 @@ import com.example.domain.repository.ContactRepository
 
 interface GetContactListUseCase {
   //suspend fun getContactList(): LiveData<List<ContactUiModel>>
-  suspend fun getContactList(): List<ContactUiModel>
+  suspend fun getContactList(isBlocked: Boolean): List<ContactUiModel>
 }
 
 class GetContactListUseCaseImpl(private val repository: ContactRepository) : GetContactListUseCase {
-  override suspend fun getContactList(): List<ContactUiModel> {
+  override suspend fun getContactList(isBlocked: Boolean): List<ContactUiModel> {
     return repository
-        .getContactList()
+        .getContactList(isBlocked)
   }
 }
