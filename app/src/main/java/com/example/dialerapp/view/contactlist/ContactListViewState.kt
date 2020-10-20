@@ -12,4 +12,5 @@ class ContactListViewState(status: Status, error: Throwable? = null, data: List<
     val liveDataNoContactTextVisibility: MutableLiveData<Boolean> = MutableLiveData(true)
     val liveDataRecyclerViewVisibility: MutableLiveData<Boolean> = MutableLiveData(false)
     val liveDataUserContactList: MutableLiveData<List<BaseBindingRVModel>> = MutableLiveData(mutableListOf())
+    val liveDataDialerScreen: MutableLiveData<Boolean> = MutableLiveData(false)
 }

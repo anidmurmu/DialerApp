@@ -44,6 +44,12 @@ class ContactListFragment : DataBindingBaseFragment<FragmentContactListBinding>(
                 findNavController().navigate(R.id.action_contactListFragment_to_contactInfoFragment)
             }
         })
+        model.contactListLiveData.value?.liveDataDialerScreen?.observe(this, Observer {
+            if (it) {
+                //model.getContactList()
+                findNavController().navigate(R.id.action_contactListFragment_to_dialerFragment)
+            }
+        })
     }
 
     override fun setBaseStates() {

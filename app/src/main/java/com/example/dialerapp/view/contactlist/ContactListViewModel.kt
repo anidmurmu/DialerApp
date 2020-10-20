@@ -76,6 +76,10 @@ class ContactListViewModel(private val getContactListUseCase: GetContactListUseC
             R.id.onclick_btn_add_contact -> {
                 _contactListMutableLiveData.value?.liveDataContactScreen?.postValue(true)
             }
+
+            R.id.onclick_btn_dialer -> {
+                _contactListMutableLiveData.value?.liveDataDialerScreen?.postValue(true)
+            }
         }
     }
 }
