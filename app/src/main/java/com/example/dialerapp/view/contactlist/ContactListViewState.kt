@@ -9,10 +9,11 @@ class ContactListViewState(status: Status, error: Throwable? = null, data: List<
 
     fun getContactList() = data ?: mutableListOf()
     val liveDataContactScreen: MutableLiveData<Boolean> = MutableLiveData(false)
+    val liveDataDialerScreen: MutableLiveData<Boolean> = MutableLiveData(false)
+    val liveDataBlockedContactScreen: MutableLiveData<Boolean> = MutableLiveData(false)
     val liveDataNoContactTextVisibility: MutableLiveData<Boolean> = MutableLiveData(true)
     val liveDataRecyclerViewVisibility: MutableLiveData<Boolean> = MutableLiveData(false)
     val liveDataUserContactList: MutableLiveData<List<BaseBindingRVModel>> = MutableLiveData(mutableListOf())
-    val liveDataDialerScreen: MutableLiveData<Boolean> = MutableLiveData(false)
     val liveDataMakeCall: MutableLiveData<Boolean> = MutableLiveData(false)
     val liveDataPhoneNumber: MutableLiveData<String> = MutableLiveData("")
 }

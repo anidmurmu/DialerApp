@@ -1,6 +1,5 @@
 package com.example.domain.usecase
 
-import androidx.lifecycle.LiveData
 import com.example.domain.model.ContactUiModel
 import com.example.domain.repository.ContactRepository
 

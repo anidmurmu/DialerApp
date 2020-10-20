@@ -13,4 +13,5 @@
     <item name="onclick_btn_update" type="id"/>
     <item name="onclick_btn_block" type="id"/>
     <item name="onclick_btn_unblock" type="id"/>
+    <item name="onclick_btn_unblock_list" type="id"/>
 </resources>

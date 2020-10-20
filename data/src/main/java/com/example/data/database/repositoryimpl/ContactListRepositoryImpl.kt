@@ -1,7 +1,5 @@
 package com.example.data.database.repositoryimpl
 
-import android.util.Log
-import androidx.lifecycle.LiveData
 import com.example.data.database.dao.ContactDao
 import com.example.data.database.mapper.ContactEntityListToContactUiModelListMapper
 import com.example.data.database.mapper.ContactEntityListToContactUiModelListMapperWithoutLiveData
@@ -16,8 +14,6 @@ class ContactListRepositoryImpl(
     private val contactUiModelToContactEntityMapper: ContactUiModelToContactEntityMapper
 ) : ContactRepository {
     override suspend fun getContactList(isBlocked: Boolean): List<ContactUiModel> {
-        /*Log.d("apple repo", contactDao
-            .getContactList().value?.size.toString())*/
         return contactEntityListToContactUiModelListMapperWithoutLiveData
             .mapFrom(
                 contactDao
@@ -47,5 +43,9 @@ class ContactListRepositoryImpl(
 
     override suspend fun blockContact(contactUiModel: ContactUiModel) {
         contactDao.blockContact(contactUiModelToContactEntityMapper.mapFrom(contactUiModel))
+    }
+
+    override suspend fun unblockContact(contactUiModel: ContactUiModel) {
+        contactDao.unblockContact(contactUiModelToContactEntityMapper.mapFrom(contactUiModel))
     }
 }

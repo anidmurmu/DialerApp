@@ -10,4 +10,5 @@ interface ContactRepository {
     suspend fun updateContact(contactUiModel: ContactUiModel)
     suspend fun deleteContact(contactUiModel: ContactUiModel)
     suspend fun blockContact(contactUiModel: ContactUiModel)
+    suspend fun unblockContact(contactUiModel: ContactUiModel)
 }

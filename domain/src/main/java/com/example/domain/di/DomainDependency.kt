@@ -10,4 +10,5 @@ val domainModule = module {
   single<UpdateContactUseCase> { UpdateContactUseCaseImpl(get()) }
   single<DeleteContactUseCase> { DeleteContactUseCaseImpl(get()) }
   single<BlockContactUseCase> { BlockContactUseCaseImpl(get()) }
+  single<UnblockContactUseCase> { UnblockContactUseCaseImpl(get()) }
 }

@@ -9,6 +9,7 @@
     <string name="save">Save</string>
     <string name="user_profile_pic">User profile image</string>
     <string name="add_contact">Add Contact</string>
+    <string name="blocked_contact_list">Blocked contact list</string>
     <string name="email_empty">Email cannot be empty</string>
     <string name="email_error">Please enter valid email id</string>
     <string name="name_empty">Name cannot be empty</string>

@@ -1,11 +1,8 @@
 package com.example.dialerapp.view.contactlist
 
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import androidx.room.PrimaryKey
-import com.example.dialerapp.App
 import com.example.dialerapp.R
 import com.example.domain.base.Status
 import com.example.domain.model.ContactUiModel
@@ -18,7 +15,6 @@ import com.example.ui.base.ViewOnClickListener
 import com.example.ui.base.adapter.BaseBindingRVModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class ContactListViewModel(
     private val getContactListUseCase: GetContactListUseCase,
@@ -95,6 +91,10 @@ class ContactListViewModel(
 
             R.id.onclick_btn_dialer -> {
                 _contactListMutableLiveData.value?.liveDataDialerScreen?.postValue(true)
+            }
+
+            R.id.onclick_btn_unblock_list -> {
+                _contactListMutableLiveData.value?.liveDataBlockedContactScreen?.postValue(true)
             }
 
             R.id.onclick_item_call -> {

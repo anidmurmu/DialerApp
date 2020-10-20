@@ -26,7 +26,7 @@ class ContactListFragment : DataBindingBaseFragment<FragmentContactListBinding>(
             model,
             ContactListVHFactory()
         )
-        model.contactListLiveData.value?.liveDataUserContactList?.observe(this, Observer {
+        /*model.contactListLiveData.value?.liveDataUserContactList?.observe(this, Observer {
             //Log.d("apple list", it.toString())
             it.forEach { model ->
                val contact =  model.getBindingPairs()[0].second
@@ -37,8 +37,13 @@ class ContactListFragment : DataBindingBaseFragment<FragmentContactListBinding>(
                 model,
                 ContactListVHFactory()
             )
-        })
+        })*/
 
+        model.contactListLiveData.value?.liveDataBlockedContactScreen?.observe(this, Observer {
+            if (it) {
+                findNavController().navigate(R.id.action_contactListFragment_to_blockedContactListFragment)
+            }
+        })
         model.contactListLiveData.value?.liveDataContactScreen?.observe(this, Observer {
             if (it) {
                 findNavController().navigate(R.id.action_contactListFragment_to_contactInfoFragment)
