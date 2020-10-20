@@ -7,7 +7,6 @@ import com.example.ui.base.adapter.BaseBindingRVModel
 
 class ContactListViewState(status: Status, error: Throwable? = null, data: List<BaseBindingRVModel>? = null ) : BaseViewState<List<BaseBindingRVModel>>(status, error, data) {
 
-    fun getContactList() = data ?: mutableListOf()
     val liveDataContactScreen: MutableLiveData<Boolean> = MutableLiveData(false)
     val liveDataDialerScreen: MutableLiveData<Boolean> = MutableLiveData(false)
     val liveDataBlockedContactScreen: MutableLiveData<Boolean> = MutableLiveData(false)

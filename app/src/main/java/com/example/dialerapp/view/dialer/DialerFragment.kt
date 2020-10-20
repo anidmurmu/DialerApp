@@ -1,10 +1,6 @@
 package com.example.dialerapp.view.dialer
 
-import android.content.Intent
-import android.net.Uri
-import android.util.Log
 import androidx.lifecycle.Observer
-import com.example.dialerapp.App
 import com.example.dialerapp.MainActivity
 import com.example.dialerapp.R
 import com.example.dialerapp.databinding.FragmentDialerBinding
