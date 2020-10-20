@@ -1,9 +1,7 @@
-import com.example.ui.base.ViewOnClickListener
-import com.example.ui.base.adapter.BaseBindingRVModel
-import com.example.ui.base.adapter.BaseBindingViewHolder
-import com.example.ui.base.adapter.BaseRVBindingAdapter
-import com.example.ui.base.adapter.BaseViewHolderBindingFactory
+package com.example.ui.base.adapter
+
 import androidx.databinding.ViewDataBinding
+import com.example.ui.base.ViewOnClickListener
 
 open class RVModelBindingAdapter(list: List<BaseBindingRVModel>, private val viewCB: ViewOnClickListener?, private val baseViewHolderFactory: BaseViewHolderBindingFactory) : BaseRVBindingAdapter<BaseBindingRVModel>(list) {
 

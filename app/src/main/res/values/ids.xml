@@ -2,4 +2,5 @@
 <resources>
     <item name="onclick_btn_add_contact" type="id" />
     <item name="onclick_btn_save_contact" type="id" />
+    <item name="onclick_btn_dialer" type="id" />
 </resources>

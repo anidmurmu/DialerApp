@@ -5,6 +5,7 @@
     <string name="last_name">Last name</string>
     <string name="phone_num">Phone Number</string>
     <string name="email">Email</string>
+    <string name="call">Call</string>
     <string name="save">Save</string>
     <string name="user_profile_pic">User profile image</string>
     <string name="add_contact">Add Contact</string>
@@ -14,4 +15,16 @@
     <string name="name_error">Please enter valid name</string>
     <string name="contact_info_empty">Contact number cannot be empty</string>
     <string name="contact_info_error">Please enter valid contact number</string>
+    <string name="one">1</string>
+    <string name="two">2</string>
+    <string name="three">3</string>
+    <string name="four">4</string>
+    <string name="five">5</string>
+    <string name="six">6</string>
+    <string name="seven">7</string>
+    <string name="eight">8</string>
+    <string name="nine">9</string>
+    <string name="zero">0</string>
+    <string name="star">*</string>
+    <string name="hash">#</string>
 </resources>

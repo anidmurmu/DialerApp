@@ -1,6 +1,6 @@
 package com.example.data.network.retrofit
 
-import NetworkMonitorInterceptor
+import com.example.ui.helper.NetworkMonitorInterceptor
 import android.content.Context
 import com.readystatesoftware.chuck.ChuckInterceptor
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory

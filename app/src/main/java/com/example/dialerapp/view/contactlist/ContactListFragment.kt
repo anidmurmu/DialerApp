@@ -1,6 +1,6 @@
 package com.example.dialerapp.view.contactlist
 
-import RVModelBindingAdapter
+import com.example.ui.base.adapter.RVModelBindingAdapter
 import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -31,11 +31,11 @@ class ContactListFragment : DataBindingBaseFragment<FragmentContactListBinding>(
                val contact =  model.getBindingPairs()[0].second
                 Log.d("apple content", contact.toString())
             }
-            /*binding.recyclerContactList.adapter = RVModelBindingAdapter(
+            binding.recyclerContactList.adapter = RVModelBindingAdapter(
                 it,
                 model,
                 ContactListVHFactory()
-            )*/
+            )
         })
 
         model.contactListLiveData.value?.liveDataContactScreen?.observe(this, Observer {

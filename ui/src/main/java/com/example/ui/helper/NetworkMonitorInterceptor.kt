@@ -1,4 +1,5 @@
-import com.example.ui.helper.NoInternetException
+package com.example.ui.helper
+
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities

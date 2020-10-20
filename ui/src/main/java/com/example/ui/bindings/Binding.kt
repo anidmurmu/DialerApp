@@ -1,6 +1,6 @@
 package com.example.ui.bindings
 
-import RVModelBindingAdapter
+import com.example.ui.base.adapter.RVModelBindingAdapter
 import android.view.View
 import com.example.ui.base.adapter.BaseBindingRVModel
 import com.example.ui.base.adapter.BaseRVBindingAdapter

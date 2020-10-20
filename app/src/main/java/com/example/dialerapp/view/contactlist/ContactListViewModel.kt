@@ -32,8 +32,8 @@ class ContactListViewModel(private val getContactListUseCase: GetContactListUseC
     private fun getContactList() {
         viewModelScope.launch(Dispatchers.IO) {
             val list = getContactListUseCase.getContactList(isBlocked = false)
-            val contactList = getViewableData(list)
-            withContext(Dispatchers.Main) {
+          viewModelScope.launch(Dispatchers.Main) {
+              val contactList = getViewableData(list)
               /*_contactListMutableLiveData.value =
                 ContactListViewState(
                   status = Status.SUCCESS,
