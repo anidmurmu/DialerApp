@@ -9,4 +9,5 @@ class ContactListViewState(status: Status, error: Throwable? = null, data: List<
 
     fun getContactList() = data ?: mutableListOf()
     val liveDataContactScreen: MutableLiveData<Boolean> = MutableLiveData(false)
+    val liveDataUserContactList: MutableLiveData<List<BaseBindingRVModel>> = MutableLiveData()
 }

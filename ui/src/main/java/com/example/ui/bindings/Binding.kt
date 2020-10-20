@@ -1,4 +1,4 @@
-package `in`.example.ui.bindings
+package com.example.ui.bindings
 
 import RVModelBindingAdapter
 import com.example.ui.base.adapter.BaseBindingRVModel
