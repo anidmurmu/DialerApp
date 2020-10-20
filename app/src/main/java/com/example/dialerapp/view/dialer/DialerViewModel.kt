@@ -54,21 +54,7 @@ class DialerViewModel : RxAwareViewModel(), ViewOnClickListener {
             R.id.onclick_btn_call -> {
                 val numberToCall = _mutableLiveDataDialerViewState.value?.contactNumber?.value
                 if (isNumberValid(numberToCall)) {
-                    Toast.makeText(App.instance, "number valid", Toast.LENGTH_SHORT).show()
-                    // Create the intent.
-
-                    // Create the intent.
-                    val dialIntent = Intent(Intent.ACTION_DIAL)
-// Set the data for the intent as the phone number.
-// Set the data for the intent as the phone number.
-                    dialIntent.data = Uri.parse("tel:$numberToCall")
-// If package resolves to an app, send intent.
-// If package resolves to an app, send intent.
-                    if (dialIntent.resolveActivity(App.instance.packageManager) != null) {
-                        App.instance.startActivity(dialIntent)
-                    } else {
-                        Log.e("apple", "Can't resolve app for ACTION_DIAL Intent.")
-                    }
+                    _mutableLiveDataDialerViewState.value?.liveDataMakeCall?.postValue(true)
                 }
             }
         }
