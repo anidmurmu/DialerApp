@@ -1,11 +1,15 @@
 package com.example.dialerapp.view.dialer
 
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.dialerapp.App
 import com.example.dialerapp.R
 import com.example.domain.base.Status
 import com.example.ui.base.RxAwareViewModel
 import com.example.ui.base.ViewOnClickListener
+import com.example.ui.helper.isContactNumberValid
+import com.example.ui.helper.isNumberValid
 
 class DialerViewModel : RxAwareViewModel(), ViewOnClickListener {
 
@@ -14,6 +18,10 @@ class DialerViewModel : RxAwareViewModel(), ViewOnClickListener {
 
     fun init() {
         _mutableLiveDataDialerViewState.value = DialerViewState(Status.LOADING)
+    }
+
+    fun makeCall() {
+
     }
 
     override fun onViewClick(id: Int, data: Any) {
@@ -36,6 +44,13 @@ class DialerViewModel : RxAwareViewModel(), ViewOnClickListener {
                 val previousNum = _mutableLiveDataDialerViewState.value?.contactNumber?.value
                 val newNumber = previousNum + char.toString()
                 _mutableLiveDataDialerViewState.value?.contactNumber?.postValue(newNumber)
+            }
+
+            R.id.onclick_btn_call -> {
+                val numberToCall = _mutableLiveDataDialerViewState.value?.contactNumber?.value
+                if(isNumberValid(numberToCall)) {
+                    Toast.makeText(App.instance, "number valid", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }

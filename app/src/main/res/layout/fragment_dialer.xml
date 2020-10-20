@@ -188,6 +188,7 @@
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabCall"
             android:contentDescription="@string/call"
+            android:onClick="@{() -> viewModel.onViewClick(@id/onclick_btn_call, @id/onclick_btn_call)}"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_gravity="center_horizontal"

@@ -6,4 +6,5 @@
     <item name="onclick_btn_add_number" type="id" />
     <item name="onclick_btn_clear_number" type="id"/>
     <item name="onclick_btn_char" type="id"/>
+    <item name="onclick_btn_call" type="id"/>
 </resources>

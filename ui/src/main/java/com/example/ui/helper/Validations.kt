@@ -60,3 +60,10 @@ fun isNameValid(name: String?): Boolean {
 fun isContactNumberValid(number: String): Boolean {
   return number.trim().length == CONTACT_NUMBER_LEN
 }
+
+fun isNumberValid(number: String?): Boolean {
+  val regex = "^[0-9]{10}$"
+  val pattern: Pattern = Pattern.compile(regex)
+  val matcher: Matcher = pattern.matcher(number)
+  return matcher.find()
+}
