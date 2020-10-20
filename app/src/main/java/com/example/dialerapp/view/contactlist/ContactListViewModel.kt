@@ -18,11 +18,9 @@ class ContactListViewModel(private val getContactListUseCase: GetContactListUseC
   private val _contactListMutableLiveData = MutableLiveData<ContactListViewState>()
   val contactListLiveData: LiveData<ContactListViewState> = _contactListMutableLiveData
 
-  private lateinit var data : List<ContactUiModel>
-
   fun init() {
     _contactListMutableLiveData.value =
-      ContactListViewState((Status.LOADING))
+      ContactListViewState(Status.LOADING)
   }
 
   init {
@@ -34,6 +32,11 @@ class ContactListViewModel(private val getContactListUseCase: GetContactListUseC
       val list = getContactListUseCase.getContactList(isBlocked = false)
       val contactList = getViewableData(list)
       _contactListMutableLiveData.value?.liveDataUserContactList?.postValue(contactList)
+      if (contactList?.size != 0) {
+        _contactListMutableLiveData.value?.liveDataNoContactTextVisibility?.postValue(false)
+        _contactListMutableLiveData.value?.liveDataRecyclerViewVisibility?.postValue(true)
+      }
+
     }
   }
 

@@ -1,6 +1,7 @@
 package com.example.ui.bindings
 
 import RVModelBindingAdapter
+import android.view.View
 import com.example.ui.base.adapter.BaseBindingRVModel
 import com.example.ui.base.adapter.BaseRVBindingAdapter
 import android.widget.ImageView
@@ -29,4 +30,9 @@ fun loadImage(view: ImageView, imageUrl: String?) {
 @BindingAdapter("errorText")
 fun setErrorMessage(view: TextInputLayout, errorMessage: String?) {
   view.error = errorMessage
+}
+
+@BindingAdapter("visible")
+fun setVisibility(view: View, shouldShow: Boolean) {
+  view.visibility = if (shouldShow) View.VISIBLE else View.INVISIBLE
 }

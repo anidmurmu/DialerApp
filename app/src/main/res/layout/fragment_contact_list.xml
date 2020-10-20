@@ -14,27 +14,42 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <TextView
+            android:id="@+id/tvNoContactList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_contact"
+            android:textColor="@color/black"
+            android:textSize="48sp"
+            app:visible="@{viewModel.contactListLiveData.liveDataNoContactTextVisibility}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerContactList"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            app:visible="@{viewModel.contactListLiveData.liveDataRecyclerViewVisibility}"
             app:data="@{viewModel.contactListLiveData.liveDataUserContactList}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:listitem="@layout/item_contact"/>
+            tools:listitem="@layout/item_contact" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabAddContact"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_add_circle_outline_black_24"
-            android:onClick="@{() -> viewModel.onViewClick(@id/onclick_btn_add_contact, @id/onclick_btn_add_contact)}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="48dp"
-            android:layout_marginBottom="48dp"/>
+            android:layout_marginBottom="48dp"
+            android:contentDescription="@string/add_contact"
+            android:onClick="@{() -> viewModel.onViewClick(@id/onclick_btn_add_contact, @id/onclick_btn_add_contact)}"
+            android:src="@drawable/ic_baseline_add_circle_outline_black_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
