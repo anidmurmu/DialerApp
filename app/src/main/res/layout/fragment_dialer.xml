@@ -14,7 +14,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:gravity="bottom">
+        android:gravity="bottom"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="60dp"
@@ -23,11 +25,13 @@
             android:layout_marginEnd="8dp">
             <EditText
                 android:id="@+id/etNumber"
+                android:text="@={viewModel.liveDataDialerViewState.contactNumber}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="6"/>
-            <ImageView
+            <ImageButton
                 android:id="@+id/imgDelete"
+                android:onClick="@{() -> viewModel.onViewClick(@id/onclick_btn_clear_number, @id/onclick_btn_clear_number)}"
                 android:src="@drawable/ic_baseline_clear_24"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
@@ -45,6 +49,7 @@
                 android:layout_height="match_parent"
                 android:text="@string/one"
                 android:textSize="18sp"
+                android:onClick="@{() -> viewModel.onViewClick(@id/onclick_btn_add_number, 1)}"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:layout_margin="8dp"/>
@@ -54,6 +59,7 @@
                 android:layout_height="match_parent"
                 android:text="@string/two"
                 android:textSize="18sp"
+                android:onClick="@{() -> viewModel.onViewClick(@id/onclick_btn_add_number, 2)}"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:layout_margin="8dp"/>
@@ -62,6 +68,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="@string/three"
+                android:onClick="@{() -> viewModel.onViewClick(@id/onclick_btn_add_number, 3)}"
                 android:textSize="18sp"
                 android:layout_weight="1"
                 android:gravity="center"
@@ -78,6 +85,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="@string/four"
+                android:onClick="@{() -> viewModel.onViewClick(@id/onclick_btn_add_number, 4)}"
                 android:textSize="18sp"
                 android:layout_weight="1"
                 android:gravity="center"
@@ -87,6 +95,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="@string/five"
+                android:onClick="@{() -> viewModel.onViewClick(@id/onclick_btn_add_number, 5)}"
                 android:textSize="18sp"
                 android:layout_weight="1"
                 android:gravity="center"
@@ -96,6 +105,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="@string/six"
+                android:onClick="@{() -> viewModel.onViewClick(@id/onclick_btn_add_number, 6)}"
                 android:textSize="18sp"
                 android:layout_weight="1"
                 android:gravity="center"
@@ -111,6 +121,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="@string/seven"
+                android:onClick="@{() -> viewModel.onViewClick(@id/onclick_btn_add_number, 7)}"
                 android:textSize="18sp"
                 android:layout_weight="1"
                 android:gravity="center"
@@ -120,6 +131,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="@string/eight"
+                android:onClick="@{() -> viewModel.onViewClick(@id/onclick_btn_add_number, 8)}"
                 android:textSize="18sp"
                 android:layout_weight="1"
                 android:gravity="center"
@@ -129,6 +141,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="@string/nine"
+                android:onClick="@{() -> viewModel.onViewClick(@id/onclick_btn_add_number, 9)}"
                 android:textSize="18sp"
                 android:layout_weight="1"
                 android:gravity="center"
@@ -145,6 +158,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="@string/star"
+                android:onClick="@{() -> viewModel.onViewClick(@id/onclick_btn_char, '*')}"
                 android:textSize="18sp"
                 android:layout_weight="1"
                 android:gravity="center"
@@ -153,7 +167,8 @@
                 android:id="@+id/btnZero"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="@string/two"
+                android:text="@string/zero"
+                android:onClick="@{() -> viewModel.onViewClick(@id/onclick_btn_add_number, 0)}"
                 android:textSize="18sp"
                 android:layout_weight="1"
                 android:gravity="center"
@@ -163,6 +178,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="@string/hash"
+                android:onClick="@{() -> viewModel.onViewClick(@id/onclick_btn_char, '#')}"
                 android:textSize="18sp"
                 android:layout_weight="1"
                 android:gravity="center"

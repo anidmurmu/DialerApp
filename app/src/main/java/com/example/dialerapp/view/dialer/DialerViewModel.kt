@@ -2,6 +2,7 @@ package com.example.dialerapp.view.dialer
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.dialerapp.R
 import com.example.domain.base.Status
 import com.example.ui.base.RxAwareViewModel
 import com.example.ui.base.ViewOnClickListener
@@ -16,6 +17,26 @@ class DialerViewModel : RxAwareViewModel(), ViewOnClickListener {
     }
 
     override fun onViewClick(id: Int, data: Any) {
+        when(id) {
+            R.id.onclick_btn_add_number -> {
+                val digit = data as Int
+                val previousNum = _mutableLiveDataDialerViewState.value?.contactNumber?.value
+                val newNumber = previousNum + digit.toString()
+                _mutableLiveDataDialerViewState.value?.contactNumber?.postValue(newNumber)
+            }
 
+            R.id.onclick_btn_clear_number -> {
+                val previousNum = _mutableLiveDataDialerViewState.value?.contactNumber?.value
+                val newNumber = previousNum?.dropLast(1)
+                _mutableLiveDataDialerViewState.value?.contactNumber?.postValue(newNumber)
+            }
+
+            R.id.onclick_btn_char -> {
+                val char = data as Char
+                val previousNum = _mutableLiveDataDialerViewState.value?.contactNumber?.value
+                val newNumber = previousNum + char.toString()
+                _mutableLiveDataDialerViewState.value?.contactNumber?.postValue(newNumber)
+            }
+        }
     }
 }
