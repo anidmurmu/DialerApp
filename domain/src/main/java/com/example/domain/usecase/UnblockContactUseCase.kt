@@ -9,6 +9,6 @@ interface UnblockContactUseCase {
 
 class UnblockContactUseCaseImpl(private val contactRepository: ContactRepository) : UnblockContactUseCase {
     override suspend fun unblockContact(contactUiModel: ContactUiModel) {
-
+        contactRepository.unblockContact(contactUiModel)
     }
 }

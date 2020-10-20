@@ -28,10 +28,11 @@ class BlockedContactListViewHolder(
     binding: ViewDataBinding,
     private val viewClickCallback: ViewOnClickListener?
 ) : BaseBindingViewHolder<BlockedContactListRVModel>(binding){
-    override fun bind(model: BlockedContactListRVModel) {
-        //val contactUiModel = model.getBindingPairs()[0].second as ContactUiModel
 
-        /*itemView.imgBtnMoreOption.setOnClickListener {
+    override fun bind(model: BlockedContactListRVModel) {
+        val contactUiModel = model.getBindingPairs()[0].second as ContactUiModel
+
+        itemView.imgBtnMoreOption.setOnClickListener {
             viewClickCallback?.onViewClick(R.id.onclick_item_more, R.id.onclick_item_more)
             val popupMenu = PopupMenu(it.context, it)
             popupMenu.inflate(R.menu.popup_menu_blocked_list)
@@ -50,7 +51,7 @@ class BlockedContactListViewHolder(
                 false
             }
             popupMenu.show()
-        }*/
+        }
     }
 }
 
@@ -60,6 +61,6 @@ class BlockedContactListRVModel(private val contactUiModel: ContactUiModel) : Ba
     }
 
     override fun getBindingPairs(): List<Pair<Int, Any>> {
-        return listOf(Pair(BR.bindingVariableContactUiModel, contactUiModel))
+        return listOf(Pair(BR.bindingVariableBlockedContactUiModel, contactUiModel))
     }
 }

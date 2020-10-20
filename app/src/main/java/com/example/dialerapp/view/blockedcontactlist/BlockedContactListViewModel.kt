@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.dialerapp.R
-import com.example.dialerapp.view.contactlist.ContactListRVModel
 import com.example.domain.base.Status
 import com.example.domain.model.ContactUiModel
 import com.example.domain.usecase.DeleteContactUseCase
@@ -49,7 +48,7 @@ class BlockedContactListViewModel(
 
         data.forEach {
             userContactList.add(
-                ContactListRVModel(
+                BlockedContactListRVModel(
                     it
                 )
             )
@@ -58,9 +57,30 @@ class BlockedContactListViewModel(
         return userContactList
     }
 
+    private fun deleteContact(contactUiModel: ContactUiModel) {
+        viewModelScope.launch(Dispatchers.IO) {
+            deleteContactUseCase.deleteContact(contactUiModel)
+        }
+    }
+
+    private fun unblockContact(contactUiModel: ContactUiModel) {
+        viewModelScope.launch(Dispatchers.IO) {
+            contactUiModel.isBlocked = false
+            unblockContactUseCase.unblockContact(contactUiModel)
+        }
+    }
+
     override fun onViewClick(id: Int, data: Any) {
         when (id) {
+            R.id.onclick_btn_delete -> {
+                val contactUiModel = data as ContactUiModel
+                deleteContact(contactUiModel)
+            }
 
+            R.id.onclick_btn_unblock -> {
+                val contactUiModel = data as ContactUiModel
+                unblockContact(contactUiModel)
+            }
         }
     }
 }
