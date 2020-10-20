@@ -1,12 +1,18 @@
 package com.example.dialerapp.view.contactlist
 
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import androidx.room.PrimaryKey
+import com.example.dialerapp.App
 import com.example.dialerapp.R
 import com.example.domain.base.Status
 import com.example.domain.model.ContactUiModel
+import com.example.domain.usecase.BlockContactUseCase
+import com.example.domain.usecase.DeleteContactUseCase
 import com.example.domain.usecase.GetContactListUseCase
+import com.example.domain.usecase.UpdateContactUseCase
 import com.example.ui.base.RxAwareViewModel
 import com.example.ui.base.ViewOnClickListener
 import com.example.ui.base.adapter.BaseBindingRVModel
@@ -14,7 +20,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class ContactListViewModel(private val getContactListUseCase: GetContactListUseCase) :
+class ContactListViewModel(
+    private val getContactListUseCase: GetContactListUseCase,
+    private val deleteContactUseCase: DeleteContactUseCase,
+    private val blockContactUseCase: BlockContactUseCase,
+    private val updateContactUseCase: UpdateContactUseCase
+) :
     RxAwareViewModel(), ViewOnClickListener {
 
     private val _contactListMutableLiveData = MutableLiveData<ContactListViewState>()
@@ -32,15 +43,8 @@ class ContactListViewModel(private val getContactListUseCase: GetContactListUseC
     private fun getContactList() {
         viewModelScope.launch(Dispatchers.IO) {
             val list = getContactListUseCase.getContactList(isBlocked = false)
-          viewModelScope.launch(Dispatchers.Main) {
-              val contactList = getViewableData(list)
-              /*_contactListMutableLiveData.value =
-                ContactListViewState(
-                  status = Status.SUCCESS,
-                  data = contactList,
-                  error = null
-                )
-              _contactListMutableLiveData.value?.data = contactList*/
+            viewModelScope.launch(Dispatchers.Main) {
+                val contactList = getViewableData(list)
                 _contactListMutableLiveData.value?.liveDataUserContactList?.postValue(contactList)
                 if (contactList?.size != 0) {
                     _contactListMutableLiveData.value?.liveDataNoContactTextVisibility?.postValue(
@@ -52,6 +56,18 @@ class ContactListViewModel(private val getContactListUseCase: GetContactListUseC
                 }
             }
 
+        }
+    }
+
+    private fun deleteContact(contactUiModel: ContactUiModel) {
+        viewModelScope.launch(Dispatchers.IO) {
+            deleteContactUseCase.deleteContact(contactUiModel)
+        }
+    }
+
+    private fun blockContact(contactUiModel: ContactUiModel) {
+        viewModelScope.launch(Dispatchers.IO) {
+            blockContactUseCase.blockContact(contactUiModel)
         }
     }
 
@@ -85,6 +101,16 @@ class ContactListViewModel(private val getContactListUseCase: GetContactListUseC
                 val phoneNumber = data as String
                 _contactListMutableLiveData.value?.liveDataPhoneNumber?.postValue(phoneNumber)
                 _contactListMutableLiveData.value?.liveDataMakeCall?.postValue(true)
+            }
+
+            R.id.onclick_btn_delete -> {
+                val contactUiModel = data as ContactUiModel
+                deleteContact(contactUiModel)
+            }
+
+            R.id.onclick_btn_block -> {
+                val contactUiModel = data as ContactUiModel
+                blockContact(contactUiModel)
             }
         }
     }

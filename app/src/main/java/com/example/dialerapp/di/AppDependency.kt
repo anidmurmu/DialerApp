@@ -7,7 +7,7 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val appModule = module {
-    viewModel { ContactListViewModel(get()) }
+    viewModel { ContactListViewModel(get(), get(), get(), get()) }
     viewModel { ContactInfoViewModel(get(), get()) }
     viewModel { DialerViewModel() }
 }

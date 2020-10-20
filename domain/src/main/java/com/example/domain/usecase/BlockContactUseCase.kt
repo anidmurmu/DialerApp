@@ -9,6 +9,7 @@ interface BlockContactUseCase {
 
 class BlockContactUseCaseImpl(private val contactRepository: ContactRepository) : BlockContactUseCase {
     override suspend fun blockContact(contactUiModel: ContactUiModel) {
+        contactUiModel.isBlocked = true
         contactRepository.blockContact(contactUiModel)
     }
 }

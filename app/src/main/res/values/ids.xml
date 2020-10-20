@@ -8,4 +8,9 @@
     <item name="onclick_btn_char" type="id"/>
     <item name="onclick_btn_call" type="id"/>
     <item name="onclick_item_call" type="id"/>
+    <item name="onclick_item_more" type="id"/>
+    <item name="onclick_btn_delete" type="id"/>
+    <item name="onclick_btn_update" type="id"/>
+    <item name="onclick_btn_block" type="id"/>
+    <item name="onclick_btn_unblock" type="id"/>
 </resources>
