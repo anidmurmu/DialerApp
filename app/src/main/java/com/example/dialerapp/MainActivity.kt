@@ -1,9 +1,12 @@
 package com.example.dialerapp
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -35,6 +38,16 @@ class MainActivity : AppCompatActivity() {
             arrayOf(Manifest.permission.CALL_PHONE),
             CALL_REQUEST_CODE
         )
+    }
+
+    fun makePhoneCall(phoneNumber: String) {
+        val dialIntent = Intent(Intent.ACTION_DIAL)
+        dialIntent.data = Uri.parse("tel:$phoneNumber")
+        if (dialIntent.resolveActivity(App.instance.packageManager) != null) {
+            startActivity(dialIntent)
+        } else {
+            Log.e("apple", "Can't resolve app for ACTION_DIAL Intent.")
+        }
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {

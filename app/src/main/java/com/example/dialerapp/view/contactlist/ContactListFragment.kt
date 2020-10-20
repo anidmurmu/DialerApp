@@ -4,6 +4,7 @@ import com.example.ui.base.adapter.RVModelBindingAdapter
 import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import com.example.dialerapp.MainActivity
 import com.example.dialerapp.R
 import com.example.dialerapp.databinding.FragmentContactListBinding
 import com.example.ui.base.DataBindingBaseFragment
@@ -40,14 +41,19 @@ class ContactListFragment : DataBindingBaseFragment<FragmentContactListBinding>(
 
         model.contactListLiveData.value?.liveDataContactScreen?.observe(this, Observer {
             if (it) {
-                //model.getContactList()
                 findNavController().navigate(R.id.action_contactListFragment_to_contactInfoFragment)
             }
         })
         model.contactListLiveData.value?.liveDataDialerScreen?.observe(this, Observer {
             if (it) {
-                //model.getContactList()
                 findNavController().navigate(R.id.action_contactListFragment_to_dialerFragment)
+            }
+        })
+
+        model.contactListLiveData.value?.liveDataMakeCall?.observe(this, Observer {
+            if (it) {
+                val phoneNumber = model.contactListLiveData.value?.liveDataPhoneNumber?.value ?: ""
+                (activity as MainActivity).makePhoneCall(phoneNumber)
             }
         })
     }

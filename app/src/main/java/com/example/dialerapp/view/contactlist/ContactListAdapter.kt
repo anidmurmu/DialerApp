@@ -22,11 +22,13 @@ class ContactListVHFactory : BaseViewHolderBindingFactory() {
     }
 }
 
-class ContactListViewHolder(binding: ViewDataBinding, val viewClickCallback: ViewOnClickListener?) : BaseBindingViewHolder<ContactListRVModel>(binding) {
+class ContactListViewHolder(binding: ViewDataBinding, private val viewClickCallback: ViewOnClickListener?) : BaseBindingViewHolder<ContactListRVModel>(binding) {
     override fun bind(model: ContactListRVModel) {
         val contactUiModel = model.getBindingPairs()[0].second as ContactUiModel
 
-        //itemView.name.text = contactUiModel.fullName
+        itemView.setOnClickListener {
+            viewClickCallback?.onViewClick(R.id.onclick_item_call, contactUiModel.contactNumber)
+        }
     }
 }
 

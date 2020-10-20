@@ -80,6 +80,12 @@ class ContactListViewModel(private val getContactListUseCase: GetContactListUseC
             R.id.onclick_btn_dialer -> {
                 _contactListMutableLiveData.value?.liveDataDialerScreen?.postValue(true)
             }
+
+            R.id.onclick_item_call -> {
+                val phoneNumber = data as String
+                _contactListMutableLiveData.value?.liveDataPhoneNumber?.postValue(phoneNumber)
+                _contactListMutableLiveData.value?.liveDataMakeCall?.postValue(true)
+            }
         }
     }
 }
