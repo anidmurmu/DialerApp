@@ -7,5 +7,5 @@ import org.koin.dsl.module
 
 val appModule = module {
     viewModel { ContactListViewModel(get()) }
-    viewModel { ContactInfoViewModel(get()) }
+    viewModel { ContactInfoViewModel(get(), get()) }
 }

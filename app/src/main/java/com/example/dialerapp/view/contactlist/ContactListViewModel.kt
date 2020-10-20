@@ -18,9 +18,11 @@ class ContactListViewModel(private val getContactListUseCase: GetContactListUseC
   private val _contactListMutableLiveData = MutableLiveData<ContactListViewState>()
   val contactListLiveData: LiveData<ContactListViewState> = _contactListMutableLiveData
 
+  private lateinit var data : List<ContactUiModel>
+
   fun init() {
     _contactListMutableLiveData.value =
-      ContactListViewState((Status.LOADING)) 
+      ContactListViewState((Status.LOADING))
   }
 
   init {
@@ -30,8 +32,11 @@ class ContactListViewModel(private val getContactListUseCase: GetContactListUseC
     allWords = repository.allWords*/
     var contactList: LiveData<List<ContactUiModel>>? = null
     viewModelScope.launch(Dispatchers.IO) {
-      contactList = getContactListUseCase.getContactList()
-      Log.d("apple", contactList?.value?.size.toString() + " this is size")
+      //contactList = getContactListUseCase.getContactList()
+      data = getContactListUseCase.getContactList()
+      //data.postValue()
+      //Log.d("apple", data.toString() + " this is size")
+      //Log.d("apple value", data.size.toString() + " this is size")
     }
 
 
@@ -41,6 +46,14 @@ class ContactListViewModel(private val getContactListUseCase: GetContactListUseC
     val data = emptyList<BaseBindingRVModel>()
     val dataFromNetwork = getContactListUseCase.getContactList()
   }*/
+
+  fun getContactList() {
+    viewModelScope.launch(Dispatchers.IO) {
+      val list = getContactListUseCase.getContactList()
+      Log.d("apple", "$list")
+      Log.d("apple value", list.size.toString() + " this is size")
+    }
+  }
 
   override fun onViewClick(id: Int, data: Any) {
     when(id) {

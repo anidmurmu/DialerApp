@@ -17,9 +17,11 @@ class ContactListFragment : DataBindingBaseFragment<FragmentContactListBinding>(
     override fun onViewDataBindingCreated(binding: FragmentContactListBinding) {
         binding.viewModel = model
         model.init()
+        model.getContactList()
 
         model.contactListLiveData.value?.liveDataContactScreen?.observe(this, Observer {
             if (it) {
+                model.getContactList()
                 findNavController().navigate(R.id.action_contactListFragment_to_contactInfoFragment)
             }
         })

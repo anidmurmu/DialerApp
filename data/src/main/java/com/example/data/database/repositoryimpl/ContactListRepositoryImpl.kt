@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import com.example.data.database.dao.ContactDao
 import com.example.data.database.mapper.ContactEntityListToContactUiModelListMapper
+import com.example.data.database.mapper.ContactEntityListToContactUiModelListMapperWithoutLiveData
 import com.example.data.database.mapper.ContactUiModelToContactEntityMapper
 import com.example.domain.model.ContactUiModel
 import com.example.domain.repository.ContactRepository
@@ -11,12 +12,13 @@ import com.example.domain.repository.ContactRepository
 class ContactListRepositoryImpl(
     private val contactDao: ContactDao,
     private val contactEntityListToContactUiModelListMapper: ContactEntityListToContactUiModelListMapper,
+    private val contactEntityListToContactUiModelListMapperWithoutLiveData: ContactEntityListToContactUiModelListMapperWithoutLiveData,
     private val contactUiModelToContactEntityMapper: ContactUiModelToContactEntityMapper
 ) : ContactRepository {
-    override suspend fun getContactList(): LiveData<List<ContactUiModel>> {
-        Log.d("apple repo", contactDao
-            .getContactList().value?.size.toString())
-        return contactEntityListToContactUiModelListMapper
+    override suspend fun getContactList(): List<ContactUiModel> {
+        /*Log.d("apple repo", contactDao
+            .getContactList().value?.size.toString())*/
+        return contactEntityListToContactUiModelListMapperWithoutLiveData
             .mapFrom(
                 contactDao
                     .getContactList()

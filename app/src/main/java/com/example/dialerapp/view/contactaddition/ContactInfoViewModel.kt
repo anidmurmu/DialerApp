@@ -10,15 +10,20 @@ import com.example.dialerapp.R
 import com.example.domain.base.Status
 import com.example.domain.model.ContactUiModel
 import com.example.domain.usecase.AddContactUseCase
+import com.example.domain.usecase.GetContactListUseCase
 import com.example.ui.base.RxAwareViewModel
 import com.example.ui.base.ViewOnClickListener
 import com.example.ui.helper.isContactNumberValid
 import com.example.ui.helper.isEmailValid
 import com.example.ui.helper.isNameValid
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class ContactInfoViewModel(private val addContactUseCase: AddContactUseCase) : RxAwareViewModel(), ViewOnClickListener {
+class ContactInfoViewModel(private val addContactUseCase: AddContactUseCase,
+                           private val getContactListUseCase: GetContactListUseCase
+) : RxAwareViewModel(), ViewOnClickListener {
 
     private val _mutableLiveDataContactInfoViewState = MutableLiveData<ContactInfoViewState>()
     val liveDataContactInfoViewState: LiveData<ContactInfoViewState> =
@@ -132,7 +137,7 @@ class ContactInfoViewModel(private val addContactUseCase: AddContactUseCase) : R
     }
 
     private fun addContact() {
-        viewModelScope.launch(Dispatchers.IO) {
+        GlobalScope.launch(Dispatchers.IO) {
             addContactUseCase.addContact(ContactUiModel(
                 liveDataContactInfoViewState.value?.contactNumber?.value ?: "",
                 getFullName(liveDataContactInfoViewState.value?.firstName?.value, liveDataContactInfoViewState.value?.lastName?.value),
@@ -141,6 +146,9 @@ class ContactInfoViewModel(private val addContactUseCase: AddContactUseCase) : R
 
             ))
             //Log.d("apple", contactList?.value?.size.toString() + " this is size")
+            delay(2000)
+            Log.d("apple1", getContactListUseCase.getContactList().toString())
+            Log.d("apple11", getContactListUseCase.getContactList().size.toString())
         }
     }
 
