@@ -60,6 +60,7 @@ class BlockedContactListViewModel(
     private fun deleteContact(contactUiModel: ContactUiModel) {
         viewModelScope.launch(Dispatchers.IO) {
             deleteContactUseCase.deleteContact(contactUiModel)
+            getBlockedContactList()
         }
     }
 
@@ -67,6 +68,7 @@ class BlockedContactListViewModel(
         viewModelScope.launch(Dispatchers.IO) {
             contactUiModel.isBlocked = false
             unblockContactUseCase.unblockContact(contactUiModel)
+            getBlockedContactList()
         }
     }
 

@@ -137,7 +137,7 @@ class ContactInfoViewModel(private val addContactUseCase: AddContactUseCase,
     }
 
     private fun addContact() {
-        GlobalScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(Dispatchers.IO) {
             addContactUseCase.addContact(ContactUiModel(
                 liveDataContactInfoViewState.value?.contactNumber?.value ?: "",
                 getFullName(liveDataContactInfoViewState.value?.firstName?.value, liveDataContactInfoViewState.value?.lastName?.value),
@@ -145,10 +145,6 @@ class ContactInfoViewModel(private val addContactUseCase: AddContactUseCase,
                 false
 
             ))
-            //Log.d("apple", contactList?.value?.size.toString() + " this is size")
-            delay(2000)
-            Log.d("apple1", getContactListUseCase.getContactList(isBlocked = false).toString())
-            Log.d("apple11", getContactListUseCase.getContactList(isBlocked = false).size.toString())
         }
     }
 
@@ -158,7 +154,6 @@ class ContactInfoViewModel(private val addContactUseCase: AddContactUseCase,
                 if (isFormValid()) {
                     _mutableLiveDataContactInfoViewState.value?.liveDataToContactList?.postValue(true)
                     addContact()
-                    Toast.makeText(App.instance, "working", Toast.LENGTH_SHORT).show()
                 }
             }
         }

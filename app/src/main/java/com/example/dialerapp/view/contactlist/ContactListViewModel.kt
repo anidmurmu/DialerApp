@@ -106,11 +106,13 @@ class ContactListViewModel(
             R.id.onclick_btn_delete -> {
                 val contactUiModel = data as ContactUiModel
                 deleteContact(contactUiModel)
+                getContactList()
             }
 
             R.id.onclick_btn_block -> {
                 val contactUiModel = data as ContactUiModel
                 blockContact(contactUiModel)
+                getContactList()
             }
         }
     }
