@@ -28,4 +28,7 @@
     <string name="zero">0</string>
     <string name="star">*</string>
     <string name="hash">#</string>
+    <string name="answer">Answer</string>
+    <string name="decline">Decline</string>
+    <string name="end_call">End Call</string>
 </resources>
